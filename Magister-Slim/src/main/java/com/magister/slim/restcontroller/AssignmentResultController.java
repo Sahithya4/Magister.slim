@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,7 +15,7 @@ import com.magister.slim.entity.AssignmentResult;
 import com.magister.slim.service.AssignmentResultAppService;
 
 @RestController
-@RequestMapping("studyguide/theme/unit/assignment/assignmentResult")
+@RequestMapping("studyguide/{studyGuideId}/theme/{themeId}/unit/{unitId}/assignment/{assignmentId}/assignmentResult")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AssignmentResultController {
 
@@ -27,14 +28,13 @@ public class AssignmentResultController {
 		return status;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.DELETE)
-	public AssignmentResult delete(@RequestBody AssignmentResult assignmentResult, HttpServletRequest request,
-			HttpServletResponse response) {
+	@RequestMapping(value = "/{assignmentResultId}",method = RequestMethod.DELETE)
+	public AssignmentResult delete(@RequestBody AssignmentResult assignmentResult,@PathVariable("assignmentResultId") int assignmentResultId) {
 		AssignmentResult status = assignmentResultAppService.deleteAssignmentResult(assignmentResult);
 		return status;
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{assignmentResultId}",method = RequestMethod.PUT)
 	public AssignmentResult update(@RequestBody AssignmentResult assignmentResult) {
 		AssignmentResult status = assignmentResultAppService.addAssignmentResult(assignmentResult);
 		return status;

@@ -43,5 +43,16 @@ public class Offering {
 		return "Offering [offeringid=" + offeringid + ", offeringName=" + offeringName + ", offeringLevels="
 				+ offeringLevels + ", isActive=" + isActive + "]";
 	}
-	
+	public Offering(int offeringid, String offeringName, List<OfferingLevelReference> offeringLevels,
+			boolean isActive) {
+		super();
+		this.offeringid = offeringid;
+		this.offeringName = offeringName;
+		this.offeringLevels = offeringLevels;
+		this.isActive = isActive;
+	}
+	public Offering()
+	{
+		
+	}
 }

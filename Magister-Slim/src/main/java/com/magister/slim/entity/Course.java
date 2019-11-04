@@ -64,4 +64,18 @@ public class Course {
 				+ studyGuideReferences + ", groupReferencs=" + groupReferencs + ", isActive=" + isActive + "]";
 	}
 
+	public Course(int courseId, String courseName, List<StudyGuideReference> studyGuideReferences,
+			List<GroupReference> groupReferencs, boolean isActive) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.studyGuideReferences = studyGuideReferences;
+		this.groupReferencs = groupReferencs;
+		this.isActive = isActive;
+	}
+	public Course()
+	{
+		
+	}
+
 }

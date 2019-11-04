@@ -49,10 +49,21 @@ public class User {
 	}
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", username=" + username + ", password=" + password
-				+ ", role=" + role + ", active=" + active + "]";
+		return "[username=" + username + ", password=" + password
+				+"]";
+	}
+	public User(int userid, String username, String password, com.magister.slim.entity.User.role role, boolean active) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.active = active;
 	}
 	
-	
+	public User()
+	{
+		
+	}
 
 }

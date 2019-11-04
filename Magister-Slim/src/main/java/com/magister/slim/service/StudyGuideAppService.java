@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.magister.slim.entity.Course;
-import com.magister.slim.entity.Student;
 import com.magister.slim.entity.StudyGuide;
+import com.magister.slim.references.CourseReference;
+import com.magister.slim.references.StudentReference;
 import com.magister.slim.references.StudyGuideReference;
 import com.magister.slim.references.TeacherReference;
 import com.magister.slim.repository.StudyGuideInterface;
@@ -19,27 +20,27 @@ public class StudyGuideAppService {
 	@Autowired
 	CourseAppService courseAppService;
 	
-	public List<StudyGuide> getStudyGuides()
+	public StudyGuide getStudyGuide(int studyGuideid)
 	{
-		List<StudyGuide> studyGuide=studyGuideInterface.findAll();
+		StudyGuide studyGuide=studyGuideInterface.findById(studyGuideid).get();
 		return studyGuide;
 	}
-	public StudyGuide deleteStudyGuide(StudyGuide studyGuide)
+	public List<StudyGuide> getStudyGuide(String studyGuideName)
 	{
-		studyGuideInterface.deleteById(studyGuide.getStudyGuideIdId());
+		List<StudyGuide> studyGuide=studyGuideInterface.getStudyGuides(studyGuideName);
 		return studyGuide;
 	}
-	
-	public StudyGuide getStudyGuide(int studyGuideid) {
-		StudyGuide student=studyGuideInterface.findById(studyGuideid).get();
-		return student;
+	public int deleteStudyGuide(int studyGuideId)
+	{
+		studyGuideInterface.deleteById(studyGuideId);
+		return studyGuideId;
 	}
 	
 	public StudyGuide addStudyGuide(StudyGuide studyGuide)
 	{
 		Course course=new Course();
 		studyGuide.setActive(true);
-		studyGuide.setCourseReference(courseDetails(121,"English"));
+		studyGuide.setCourseReference(new CourseReference(121,"English"));
 		studyGuide.setStudents(studentDetails(1,"shreya"));
 		studyGuide.setStudyGuideName("StudyGuide1");
 		studyGuide.setTeacherReference(teacherDetails(4,"Tom"));
@@ -59,18 +60,18 @@ public class StudyGuideAppService {
 		sR.add(studyGuideReference);
 		return sR;
 	}
-	public Course courseDetails(int id,String courseName)
+	public CourseReference courseDetails(int id,String courseName)
 	{
-		Course courseReference=new Course();
+		CourseReference courseReference=new CourseReference();
 		courseReference.setCourseId(id);
 		courseReference.setCourseName(courseName);
 		return courseReference;
 	}
-	public List<Student> studentDetails(int id ,String studentName)
+	public List<StudentReference> studentDetails(int id ,String studentName)
 	{
-		Student student=new Student();
-		List<Student> studentReference=new ArrayList<Student>();
-		student.setid(id);
+		StudentReference student=new StudentReference();
+		List<StudentReference> studentReference=new ArrayList<StudentReference>();
+		student.setId(id);
 		student.setName(studentName);
 		studentReference.add(student);
 		return studentReference;

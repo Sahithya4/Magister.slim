@@ -85,4 +85,19 @@ public class Unit {
 				+ ", active=" + active + "]";
 	}
 
+	public Unit(int unitId, String unitName, List<AssignmentReference> assignments, List<ResourceReference> resources,
+			ThemeReference themeReference, StudyGuideReference studyGuideReference, boolean active) {
+		super();
+		this.unitId = unitId;
+		this.unitName = unitName;
+		this.assignments = assignments;
+		this.resources = resources;
+		this.themeReference = themeReference;
+		this.studyGuideReference = studyGuideReference;
+		this.active = active;
+	}
+	public Unit()
+	{
+		
+	}
 }

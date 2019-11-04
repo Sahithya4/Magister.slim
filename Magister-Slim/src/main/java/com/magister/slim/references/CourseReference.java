@@ -24,4 +24,14 @@ public class CourseReference {
 		this.courseName = courseName;
 	}
 
+	public CourseReference(int courseId, String courseName) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+	}
+	public CourseReference()
+	{
+		
+	}
+
 }
