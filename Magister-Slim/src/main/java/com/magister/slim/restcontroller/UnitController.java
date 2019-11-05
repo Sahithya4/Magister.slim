@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.magister.slim.entity.Unit;
+import com.magister.slim.references.StudyGuideReference;
 import com.magister.slim.service.UnitAppService;
 
 @RestController
@@ -22,6 +23,9 @@ public class UnitController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Unit add(@RequestBody Unit unit) {
+		StudyGuideReference studyGuideReference= new StudyGuideReference();
+		//studyGuideReference.setStudyGuideId(studyGuideId);
+		unit.setStudyGuideReference(studyGuideReference);
 		Unit status = unitAppService.addUnit(unit);
 		System.out.println(status);
 		return status;

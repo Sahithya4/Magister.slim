@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.magister.slim.entity.Assignment;
 import com.magister.slim.service.AssignmentAppService;
 
 @RestController
-@RequestMapping("studyguide/theme/unit/assignment")
+@RequestMapping("studyGuide/{studyGuideId}/theme/{themeId}/unit/{unitId}/assignment")
 @CrossOrigin(origins = "http://localhost:4200")
 
 public class AssignmentController {
@@ -22,26 +23,25 @@ public class AssignmentController {
 	AssignmentAppService assignmentAppService;
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public Assignment add(@RequestBody Assignment assignment) {
+	public Assignment addassignment(@RequestBody Assignment assignment) {
 		Assignment status = assignmentAppService.addAssignment(assignment);
 		return status;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.DELETE)
-	public Assignment delete(@RequestBody Assignment assignment, HttpServletRequest request,
-			HttpServletResponse response) {
-		Assignment status = assignmentAppService.deleteAssignment(assignment);
-		return status;
+	@RequestMapping(value = "/{assignmentId}", method = RequestMethod.DELETE)
+	public Assignment deleteAssignmentDetails(@RequestParam("assignmentId") int assignmentId) {
+		//Assignment status = assignmentAppService.deleteAssignment(assignment);
+		return null;
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.PUT)
-	public Assignment update(@RequestBody Assignment assignment) {
-		Assignment status = assignmentAppService.addAssignment(assignment);
-		return status;
+	@RequestMapping(value = "{assignmentId}", method = RequestMethod.PUT)
+	public Assignment updateAssignmentDetails(@RequestParam("assignmentId") int assignmentId,@RequestBody(required=false) Assignment assignment) {
+//		Assignment status = assignmentAppService.addAssignment(assignment);
+		return null;
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public List<Assignment> get() {
+	public List<Assignment> getAssignmentDetails() {
 		List<Assignment> assignments = assignmentAppService.getAssignments();
 		return assignments;
 	}

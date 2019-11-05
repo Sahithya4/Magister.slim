@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.magister.slim.entity.Course;
 import com.magister.slim.service.CourseAppService;
 
 @RestController
-@RequestMapping("offering/offering-level/group/course")
+@RequestMapping("offering/{offeringId}/offering-level/{offeringLevelId}/group/{groupId}/course")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CourseController {
 
@@ -22,21 +23,21 @@ public class CourseController {
 	CourseAppService courseAppService;
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public Course add(@RequestBody Course course) {
-		Course status = courseAppService.addCourse(course);
-		return status;
+	public Course addCourse(@RequestBody Course course) {
+	//	Course status = courseAppService.addCourse(course);
+		return null;
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.DELETE)
-	public Course delete(@RequestBody Course course, HttpServletRequest request, HttpServletResponse response) {
-		Course status = courseAppService.deleteCourse(course);
-		return status;
+	@RequestMapping(value = "/{courseId}", method = RequestMethod.DELETE)
+	public Course removeCourse(@RequestParam("courseId") int courseId) {
+		//Course status = courseAppService.deleteCourse(course);
+		return null;
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.PUT)
-	public Course update(@RequestBody Course course) {
-		Course status = courseAppService.addCourse(course);
-		return status;
+	@RequestMapping(value = "{courseId}", method = RequestMethod.PUT)
+	public Course updateCourseDetails(@RequestParam("courseId") int courseId,@RequestBody Course course) {
+	//	Course status = courseAppService.addCourse(course);
+		return null;
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
