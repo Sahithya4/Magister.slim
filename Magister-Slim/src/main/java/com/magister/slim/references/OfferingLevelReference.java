@@ -7,7 +7,7 @@ public class OfferingLevelReference {
 	@Id
 	private int offeringLevelid;
 	private String offeringLevelName;
-
+	private boolean isActive;
 	public int getOfferingLevelid() {
 		return offeringLevelid;
 	}
@@ -22,6 +22,14 @@ public class OfferingLevelReference {
 
 	public void setOfferingLevelName(String offeringLevelName) {
 		this.offeringLevelName = offeringLevelName;
+	}
+	
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override

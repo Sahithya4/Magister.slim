@@ -7,6 +7,7 @@ public class OfferingReference {
 	@Id
 	private int offeringId;
 	private String offeringName;
+	private boolean isActive;
 
 	public int getOfferingId() {
 		return offeringId;
@@ -22,6 +23,13 @@ public class OfferingReference {
 
 	public void setOfferingName(String offeringName) {
 		this.offeringName = offeringName;
+	}
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	@Override
