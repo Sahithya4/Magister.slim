@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.magister.slim.references.CourseReference;
 import com.magister.slim.references.OfferingLevelReference;
+import com.magister.slim.references.StudentReference;
 import com.magister.slim.references.StudyGuideReference;
 import com.magister.slim.references.TeacherReference;
 
@@ -16,9 +17,8 @@ public class Group {
 	@Id
 	private int groupId;
 	private String groupName;
-	private List<Student> students;
+	private List<StudentReference> students;
 	private TeacherReference teacherReference;
-	private StudyGuideReference studyGuideReference;
 	private List<CourseReference> coursesreference;
 	private OfferingLevelReference offeringLevelReference;
 	private boolean isActive;
@@ -39,14 +39,7 @@ public class Group {
 		this.groupName = groupName;
 	}
 
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
-
+	
 	public TeacherReference getTeacherReference() {
 		return teacherReference;
 	}
@@ -55,13 +48,7 @@ public class Group {
 		this.teacherReference = teacherReference;
 	}
 
-	public StudyGuideReference getStudyGuideReference() {
-		return studyGuideReference;
-	}
 
-	public void setStudyGuideReference(StudyGuideReference studyGuideReference) {
-		this.studyGuideReference = studyGuideReference;
-	}
 
 	public List<CourseReference> getCoursesreference() {
 		return coursesreference;
@@ -87,12 +74,39 @@ public class Group {
 		this.isActive = isActive;
 	}
 
+	
+
+	public List<StudentReference> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<StudentReference> students) {
+		this.students = students;
+	}
+
+	
+
 	@Override
 	public String toString() {
 		return "Group [groupId=" + groupId + ", groupName=" + groupName + ", students=" + students
-				+ ", teacherReference=" + teacherReference + ", studyGuideReference=" + studyGuideReference
-				+ ", coursesreference=" + coursesreference + ", offeringLevelReference=" + offeringLevelReference
-				+ ", isActive=" + isActive + "]";
+				+ ", teacherReference=" + teacherReference + ", coursesreference=" + coursesreference
+				+ ", offeringLevelReference=" + offeringLevelReference + ", isActive=" + isActive + "]";
 	}
 
+	public Group(int groupId, String groupName, List<StudentReference> students, TeacherReference teacherReference,
+			List<CourseReference> coursesreference, OfferingLevelReference offeringLevelReference, boolean isActive) {
+		super();
+		this.groupId = groupId;
+		this.groupName = groupName;
+		this.students = students;
+		this.teacherReference = teacherReference;
+		this.coursesreference = coursesreference;
+		this.offeringLevelReference = offeringLevelReference;
+		this.isActive = isActive;
+	}
+
+	public Group()
+	{
+		
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.magister.slim.entity.Group;
+import com.magister.slim.entity.OfferingLevel;
 import com.magister.slim.entity.Student;
 import com.magister.slim.entity.Teacher;
 import com.magister.slim.references.CourseReference;
@@ -26,77 +27,10 @@ public class GroupAppService {
 	TeacherAppService teacherAppService;
 	@Autowired
 	StudentAppService studentAppService;
+	@Autowired
+	OfferingLevelAppService offeringLevelAppService;
 
-	public Group addGroup(Group group, TeacherReference teacherReference, List<StudentReference> students,
-			StudyGuideReference studyGuide, OfferingLevelReference offeringLevel) {
-		Teacher teacher = new Teacher();
-		Student student = new Student();
-		group.setActive(true);
-		group.setGroupName("groupA");
-		group.setGroupId(111);
-		group.setCoursesreference(group.getCoursesreference());
-		group.setTeacherReference(teacherDetails(teacherReference.getTeacherid(), teacherReference.getName()));
-		group.setStudyGuideReference(studyGuideDetails(studyGuide.getStudyGuideId(), studyGuide.getStudyGuideName()));
-		group.setStudents(studentDetails(1, "shreya"));
-		group.setOfferingLevelReference(
-				offeringLevelDetails(offeringLevel.getOfferingLevelid(), offeringLevel.getOfferingLevelName()));
-		groupInterface.save(group);
-		student.setid(1);
-		student.setGroup(groupDetails(group.getGroupId(), group.getGroupName()));
-		studentAppService.addStudent(student);
-		teacher.setTeacherid(teacherReference.getTeacherid());
-		teacher.setGroupReference(groupDetails(group.getGroupId(), group.getGroupName()));
-		teacherAppService.addTeacher(teacher);
-		return group;
-	}
 
-	public Group getGroup(int groupid) {
-		Group group = groupInterface.findById(groupid).get();
-		return group;
-	}
-
-	public Group updateGroup(Group group) {
-		Group g = groupInterface.findById(group.getGroupId()).get();
-		g.setCoursesreference(group.getCoursesreference());
-		return g;
-	}
-
-	public List<Group> getGroups() {
-		List<Group> groups = groupInterface.findAll();
-		return groups;
-	}
-
-	public List<GroupReference> groupDetails(int id, String groupName) {
-		GroupReference groupReference = new GroupReference();
-		List<GroupReference> gR = new ArrayList<GroupReference>();
-		groupReference.setGroupId(id);
-		groupReference.setGroupName(groupName);
-		gR.add(groupReference);
-		return gR;
-	}
-
-	public List<CourseReference> courseDetails() {
-		List<CourseReference> courseReference = new ArrayList<CourseReference>();
-		CourseReference course = new CourseReference();
-		course.setCourseId(121);
-		course.setCourseName("English");
-		courseReference.add(course);
-		return courseReference;
-	}
-
-	public TeacherReference teacherDetails(int id, String teacherName) {
-		TeacherReference teacherReference = new TeacherReference();
-		teacherReference.setTeacherid(id);
-		teacherReference.setName(teacherName);
-		return teacherReference;
-	}
-
-	public OfferingLevelReference offeringLevelDetails(int id, String offeringLevelName) {
-		OfferingLevelReference offeringLevelReference = new OfferingLevelReference();
-		offeringLevelReference.setOfferingLevelid(id);
-		offeringLevelReference.setOfferingLevelName(offeringLevelName);
-		return offeringLevelReference;
-	}
 
 	public StudyGuideReference studyGuideDetails(int id, String studyGuideName) {
 		StudyGuideReference studyGuideReference = new StudyGuideReference();
@@ -105,10 +39,10 @@ public class GroupAppService {
 		return studyGuideReference;
 	}
 
-	public List<Student> studentDetails(int id, String studentName) {
-		Student student = new Student();
-		List<Student> studentReference = new ArrayList<Student>();
-		student.setid(id);
+	public List<StudentReference> studentDetails(int id, String studentName) {
+		StudentReference student = new StudentReference();
+		List<StudentReference> studentReference = new ArrayList<StudentReference>();
+		student.setId(id);
 		student.setName(studentName);
 		studentReference.add(student);
 		return studentReference;
@@ -117,5 +51,42 @@ public class GroupAppService {
 	public Group deleteGroup(Group group) {
 		groupInterface.deleteById(group.getGroupId());
 		return group;
+	}
+
+	public Group addGroupDetails(Group groupDetails) {
+		if(offeringLevelAppService.updateGroupReferences(groupDetails)){
+			groupInterface.save(groupDetails);
+			return groupDetails;
+		}
+		else
+		return null;
+	}
+
+	public Group deleteGroup(int offeringId, int offeringLevelId, int groupId) {
+		if(groupInterface.findById(groupId).isPresent())
+		{
+		Group group=groupInterface.findById(groupId).get();
+		if(group.getOfferingLevelReference().getOfferingLevelId()==offeringLevelId)
+		{
+		group.setActive(false);
+		groupInterface.save(group);
+		boolean status=offeringLevelAppService.deleteGroupReference(offeringLevelId,groupId);
+		}
+		return group;
+		}
+		return null;
+	}
+
+	public  Group updateGroupDetails(int offeringId, Group groupDetails) {
+		
+		if(groupInterface.findById(groupDetails.getGroupId()).isPresent())
+		{
+		Group group = groupInterface.findById(groupDetails.getGroupId()).get();
+		group.setGroupName(groupDetails.getGroupName());
+		groupInterface.save(group);
+		boolean status = offeringLevelAppService.updateGroupReferenceDetails(groupDetails);
+		return groupDetails;
+		}
+		return null;
 	}
 }

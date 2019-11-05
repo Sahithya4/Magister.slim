@@ -64,4 +64,17 @@ public class Theme {
 				+ ", units=" + units + ", isActive=" + isActive + "]";
 	}
 
+	public Theme(int themeId, String themeName, StudyGuideReference studyGuideReference, List<UnitReference> units,
+			boolean isActive) {
+		super();
+		this.themeId = themeId;
+		this.themeName = themeName;
+		this.studyGuideReference = studyGuideReference;
+		this.units = units;
+		this.isActive = isActive;
+	}
+	public Theme()
+	{
+		
+	}
 }

@@ -63,4 +63,19 @@ public class AssignmentResult {
 				+ totalmarks + "]";
 	}
 
+	public AssignmentResult(int assignmentResultId, StudentReference studentReference,
+			AssignmentReference assignmentReference, int assignedMarks, int totalmarks) {
+		super();
+		this.assignmentResultId = assignmentResultId;
+		this.studentReference = studentReference;
+		this.assignmentReference = assignmentReference;
+		this.assignedMarks = assignedMarks;
+		this.totalmarks = totalmarks;
+	}
+	public AssignmentResult()
+	{
+		
+	}
+	
+
 }

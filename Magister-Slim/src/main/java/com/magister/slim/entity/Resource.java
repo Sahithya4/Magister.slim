@@ -71,4 +71,19 @@ public class Resource {
 				+ resourceName + ", studyGuideReference=" + studyGuideReference + ", createdBy=" + createdBy
 				+ ", isActive=" + isActive + "]";
 	}
+
+	public Resource(int resourceId, String resourceType, String resourceName, StudyGuideReference studyGuideReference,
+			TeacherReference createdBy, boolean isActive) {
+		super();
+		this.resourceId = resourceId;
+		this.resourceType = resourceType;
+		this.resourceName = resourceName;
+		this.studyGuideReference = studyGuideReference;
+		this.createdBy = createdBy;
+		this.isActive = isActive;
+	}
+	public Resource()
+	{
+		
+	}
 }

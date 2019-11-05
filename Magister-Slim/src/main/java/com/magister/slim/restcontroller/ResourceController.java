@@ -1,6 +1,5 @@
 package com.magister.slim.restcontroller;
 
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class ResourceController {
 	@Autowired
 	ResourceAppService resourceAppService;
 
-	@RequestMapping(value = "/resources", method = RequestMethod.POST)
+	@RequestMapping(value = "/resource", method = RequestMethod.POST)
 	public Resource add(@RequestBody Resource resource, HttpServletRequest request, HttpServletResponse response) {
 		resource.setActive(true);
 		TeacherReference teacher = new TeacherReference();
@@ -31,7 +30,7 @@ public class ResourceController {
 		return status;
 	}
 
-	@RequestMapping(value = "/resources", method = RequestMethod.PUT)
+	@RequestMapping(value = "/resource", method = RequestMethod.PUT)
 	public Resource update(@RequestBody Resource resource) {
 		resource.setActive(true);
 		TeacherReference teacher = new TeacherReference();
@@ -46,14 +45,14 @@ public class ResourceController {
 		return status;
 	}
 
-	@RequestMapping(value = "/resources", method = RequestMethod.GET)
-	public List<Resource> get() {
-		List<Resource> resources = resourceAppService.getResources();
-		return resources;
-
-	}
+//	@RequestMapping(value = "/resources", method = RequestMethod.GET)
+//	public List<Resource> get() {
+//		List<Resource> resources = resourceAppService.getResources();
+//		return resources;
+//
+//	}
 	
-	@RequestMapping(value = "/resources", method = RequestMethod.GET)
+	@RequestMapping(value = "/resource", method = RequestMethod.GET)
 	public Resource getResource(@RequestParam int resourceid) {
 		Resource resource = resourceAppService.getResource(resourceid);
 		return resource;
