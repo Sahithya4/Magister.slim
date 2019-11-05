@@ -13,21 +13,14 @@ public class Student {
 
 	@Id
 	private int id;
-	private User userid;
+	private User userReference;
 	private List<GroupReference> groupReference;
 	private String name, gender;
 	private List<CourseReference> courseReference;
 	private long phoneno;
 	private boolean active;
 
-	public User getUserid() {
-		return userid;
-	}
-
-	public void setUserid(User userid) {
-		this.userid = userid;
-	}
-
+	
 	public List<GroupReference> getGroup() {
 		return groupReference;
 	}
@@ -80,21 +73,53 @@ public class Student {
 		this.courseReference = courseReference;
 	}
 
-	public Student(int id, String name, String gender, long phoneno, boolean active) {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUserReference() {
+		return userReference;
+	}
+
+	public void setUserReference(User userReference) {
+		this.userReference = userReference;
+	}
+
+	public List<GroupReference> getGroupReference() {
+		return groupReference;
+	}
+
+	public void setGroupReference(List<GroupReference> groupReference) {
+		this.groupReference = groupReference;
+	}
+
+	public Student(int id, User userReference, List<GroupReference> groupReference, String name, String gender,
+			List<CourseReference> courseReference, long phoneno, boolean active) {
 		super();
 		this.id = id;
+		this.userReference = userReference;
+		this.groupReference = groupReference;
 		this.name = name;
 		this.gender = gender;
+		this.courseReference = courseReference;
 		this.phoneno = phoneno;
 		this.active = active;
 	}
 
-	public Student() {
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", userReference=" + userReference + ", groupReference=" + groupReference
+				+ ", name=" + name + ", gender=" + gender + ", courseReference=" + courseReference + ", phoneno="
+				+ phoneno + ", active=" + active + "]";
 	}
 
-	public void setid(int id) {
-		this.id = id;
+	public Student()
+	{
+		
 	}
 
 }

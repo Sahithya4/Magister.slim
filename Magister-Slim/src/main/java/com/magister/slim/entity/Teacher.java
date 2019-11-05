@@ -12,11 +12,12 @@ public class Teacher {
 	
 	@Id
 	private int teacherid;
-	private User userid;
+	private User userReference;
 	private String name;
 	private String address;
 	private long phoneno;
 	private List<GroupReference> groupReference;
+	
 	public List<GroupReference> getGroupReference() {
 		return groupReference;
 	}
@@ -32,12 +33,7 @@ public class Teacher {
 	public void setTeacherid(int teacherid) {
 		this.teacherid = teacherid;
 	}
-	public User getUserid() {
-		return userid;
-	}
-	public void setUserid(User userid) {
-		this.userid = userid;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -74,12 +70,37 @@ public class Teacher {
 	public void setActive(boolean active) {
 		this.isActive = active;
 	}
+	
+	
+	public Teacher(int teacherid, User userReference, String name, String address, long phoneno,
+			List<GroupReference> groupReference, int age, String gender, boolean isActive) {
+		super();
+		this.teacherid = teacherid;
+		this.userReference = userReference;
+		this.name = name;
+		this.address = address;
+		this.phoneno = phoneno;
+		this.groupReference = groupReference;
+		this.age = age;
+		this.gender = gender;
+		this.isActive = isActive;
+	}
 	@Override
 	public String toString() {
-		return "Teacher [id=" + teacherid + ", userid=" + userid + ", name=" + name + ", address=" + address + ", phoneno="
-				+ phoneno  + ", age=" + age + ", gender=" + gender + ", active=" + isActive + "]";
+		return "Teacher [teacherid=" + teacherid + ", userReference=" + userReference + ", name=" + name + ", address="
+				+ address + ", phoneno=" + phoneno + ", groupReference=" + groupReference + ", age=" + age + ", gender="
+				+ gender + ", isActive=" + isActive + "]";
 	}
-	
+	public Teacher()
+	{
+		
+	}
+	public User getUserReference() {
+		return userReference;
+	}
+	public void setUserReference(User userReference) {
+		this.userReference = userReference;
+	}
 	
 	
 }

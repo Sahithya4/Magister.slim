@@ -41,7 +41,7 @@ public class GroupAppService {
 		group.setOfferingLevelReference(
 				offeringLevelDetails(offeringLevel.getOfferingLevelid(), offeringLevel.getOfferingLevelName()));
 		groupInterface.save(group);
-		student.setid(1);
+		student.setId(1);
 		student.setGroup(groupDetails(group.getGroupId(), group.getGroupName()));
 		studentAppService.addStudent(student);
 		teacher.setTeacherid(teacherReference.getTeacherid());
@@ -105,10 +105,10 @@ public class GroupAppService {
 		return studyGuideReference;
 	}
 
-	public List<Student> studentDetails(int id, String studentName) {
-		Student student = new Student();
-		List<Student> studentReference = new ArrayList<Student>();
-		student.setid(id);
+	public List<StudentReference> studentDetails(int id, String studentName) {
+		StudentReference student = new StudentReference();
+		List<StudentReference> studentReference = new ArrayList<StudentReference>();
+		student.setId(id);
 		student.setName(studentName);
 		studentReference.add(student);
 		return studentReference;

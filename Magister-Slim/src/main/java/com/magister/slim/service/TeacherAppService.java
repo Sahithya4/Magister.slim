@@ -40,7 +40,7 @@ public class TeacherAppService {
 		user.setUserid(teacher.getTeacherid());
 		user.setUsername(teacher.getName());
 		user.setUserType(role.teacher);
-		teacher.setUserid(user);
+		teacher.setUserReference(user);
 		teacher.setGroupReference(teacher.getGroupReference());
 		userAppService.addUser(user);
 		return teacherInterface.save(teacher);

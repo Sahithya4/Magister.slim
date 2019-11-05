@@ -22,7 +22,7 @@ public class StudentAppService {
 		studentInterface.deleteById(student.getid());
 		return student;
 	}
-	public List<Student> getStudents()
+	public List<Student> getStudents(String studentName)
 	{
 		List<Student> student1=studentInterface.findAll();
 		return student1;
@@ -30,7 +30,7 @@ public class StudentAppService {
 	public Student addStudent(Student student)
 	{
 		User user=new User();
-		student.setUserid(user);
+		student.setUserReference(user);
 		user.setUserType(role.student);
 		user.setUserid(student.getid());
 		studentInterface.save(student);
